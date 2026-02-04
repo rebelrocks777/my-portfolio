@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV_MANIFESTO // PORTFOLIO</title>
+    <style>
+        /* --- BRUTALIST RESET & VARIABLES --- */
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ccff00; /* Neon Lime */
+            --secondary-accent: #ff00ff; /* Magenta */
+            --border-thick: 3px solid var(--text-color);
+            --border-thin: 1px solid var(--text-color);
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-display: 'Impact', 'Arial Black', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair; /* Custom cursor */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-mono);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* --- UTILITIES --- */
+        .uppercase { text-transform: uppercase; }
+        .bold { font-weight: 900; }
+        .neon-text { color: var(--accent-color); }
+        .border-bottom { border-bottom: var(--border-thick); }
+        
+        /* --- LAYOUT GRID --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            border-left: var(--border-thick);
+            border-right: var(--border-thick);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            border-bottom: var(--border-thick);
+        }
+
+        .logo {
+            padding: 2rem;
+            font-size: 1.5rem;
+            background: var(--text-color);
+            color: var(--bg-color);
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        nav li {
+            border-left: var(--border-thick);
+            height: 100%;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 0 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 4rem 2rem;
+            border-bottom: var(--border-thick);
+            position: relative;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+        }
+
+        .manifesto {
+            max-width: 600px;
+            font-size: 1.2rem;
+            border: 1px solid var(--accent-color);
+            padding: 1.5rem;
+            background: rgba(204, 255, 0, 0.05);
+            box-shadow: 10px 10px 0px var(--accent-color);
+        }
+
+        /* --- MARQUEE --- */
+        .marquee-container {
+            border-bottom: var(--border-thick);
+            overflow: hidden;
+            white-space: nowrap;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 1rem 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* --- GRID SECTIONS --- */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-item {
+            border-right: var(--border-thick);
+            border-bottom: var(--border-thick);
+            padding: 2rem;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .grid-item:hover {
+            background: #1a1a1a;
+        }
+
+        .grid-item h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-accent);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--text-color);
+            color: var(--bg-color);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- BLOG TEASER --- */
+        .blog-teaser {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: var(--border-thick);
+            background: repeating-linear-gradient(
+                45deg,
+                #0f0f0f,
+                #0f0f0f 10px,
+                #141414 10px,
+                #141414 20px
+            );
+        }
+
+        .btn-brutal {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            background: transparent;
+            color: var(--accent-color);
+            border: 3px solid var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-brutal:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 5px 5px 0px var(--text-color);
+            transform: translate(-2px, -2px);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .time-display {
+            font-size: 3rem;
+            color: var(--secondary-accent);
+            font-family: var(--font-display);
+        }
+
+        /* --- MOBILE TWEAKS --- */
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; }
+            nav ul { flex-direction: column; border-top: var(--border-thick); }
+            nav li { border-left: none; border-bottom: var(--border-thin); }
+            nav a { padding: 1rem; }
+            .grid-item { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                DEV_INITIALIZING...<span class="cursor">_</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#work">PROJECTS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero" id="about">
+            <h1 class="uppercase">
+                Change<br>
+                The<br>
+                <span class="neon-text">Scene.</span>
+            </h1>
+            
+            <div class="manifesto">
+                <p class="uppercase bold">>> SYSTEM STATUS: LEARNING</p>
+                <br>
+                <p>I am a web developer in the making. I am not here to follow standards; I am here to rewrite them.</p>
+                <br>
+                <p>Passionate about improvement. Obsessed with the code. Changing the world one `commit` at a time.</p>
+            </div>
+        </section>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                 HTML5 // CSS3 // JAVASCRIPT // RESPONSIVE // GIT // UI/UX // PROBLEM SOLVING // DEBUGGING // HTML5 // CSS3 // JAVASCRIPT // RESPONSIVE // GIT // UI/UX // 
+            </div>
+        </div>
+
+        <section class="grid-section" id="work">
+            <div class="grid-item">
+                <span class="status-badge">LIVE</span>
+                <h2>PROJECT_01</h2>
+                <p>A raw HTML/CSS experiment. Exploring the boundaries of layout engines.</p>
+                <br>
+                <a href="#" style="color: var(--accent-color);">[ VIEW SOURCE ]</a>
+            </div>
+
+            <div class="grid-item">
+                <span class="status-badge">IN_PROGRESS</span>
+                <h2>PROJECT_02</h2>
+                <p>JavaScript logic puzzles. Solving real-world problems with algorithmic thinking.</p>
+                <br>
+                <a href="#" style="color: var(--accent-color);">[ VIEW SOURCE ]</a>
+            </div>
+
+            <div class="grid-item">
+                <span class="status-badge">CONCEPT</span>
+                <h2>THE_FUTURE</h2>
+                <p>This slot is reserved for the next big thing. Loading skills...</p>
+            </div>
+        </section>
+
+        <section class="blog-teaser">
+            <h2 style="font-size: 3rem; font-family: var(--font-display);">BLOGS_INBOUND</h2>
+            <p style="margin-top: 1rem;">Documenting the journey. Failures, fixes, and brutal honesty.</p>
+            <a href="#" class="btn-brutal">NOTIFY ME</a>
+        </section>
+
+        <footer id="contact">
+            <div>
+                <h3>CONTACT_LINK</h3>
+                <p>email: rebel72472@gmail.com</p>
+                <p>github: @rebelrocks777</p>
+            </div>
+            <div>
+                <p class="uppercase">Local Time:</p>
+                <div class="time-display" id="clock">00:00:00</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // --- JS: REAL TIME CLOCK ---
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ms = String(now.getMilliseconds()).padStart(3, '0').slice(0, 2); // Fast moving numbers
+            
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}:${ms}`;
+        }
+        setInterval(updateTime, 50); // Updates very fast for "hacker" feel
+
+        // --- JS: CURSOR BLINK ---
+        const cursor = document.querySelector('.cursor');
+        setInterval(() => {
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }, 500);
+
+        // --- JS: HOVER GLITCH EFFECT ON TITLE ---
+        const title = document.querySelector('h1');
+        const originalText = title.innerHTML;
+        
+        title.addEventListener('mouseover', () => {
+            title.style.color = '#ff00ff';
+            title.style.transform = 'skewX(-10deg)';
+        });
+        
+        title.addEventListener('mouseout', () => {
+            title.style.color = 'var(--text-color)';
+            title.style.transform = 'skewX(0deg)';
+        });
+    </script>
+</body>
+</html>
